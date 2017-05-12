@@ -1,6 +1,7 @@
-package com.nh.system.ui.flags;
+package com.stellarscript.system.ui.flags;
 
 import android.app.Activity;
+import android.os.Build;
 import android.view.View;
 
 import com.facebook.react.bridge.Callback;
@@ -12,14 +13,17 @@ import com.facebook.react.common.MapBuilder;
 
 import java.util.Map;
 
-public class SystemUiFlags extends ReactContextBaseJavaModule {
-    public SystemUiFlags(ReactApplicationContext reactContext) {
+public class SystemUiFlagsModule extends ReactContextBaseJavaModule {
+
+    private static final String TAG = "SystemUiFlags";
+
+    public SystemUiFlagsModule(ReactApplicationContext reactContext) {
         super(reactContext);
     }
 
     @Override
     public String getName() {
-        return "SystemUiFlags";
+        return TAG;
     }
 
     @Override
@@ -28,14 +32,25 @@ public class SystemUiFlags extends ReactContextBaseJavaModule {
 
         constants.put("SYSTEM_UI_FLAG_HIDE_NAVIGATION", View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         constants.put("SYSTEM_UI_FLAG_FULLSCREEN", View.SYSTEM_UI_FLAG_FULLSCREEN);
-        constants.put("SYSTEM_UI_FLAG_IMMERSIVE", View.SYSTEM_UI_FLAG_IMMERSIVE);
         constants.put("SYSTEM_UI_FLAG_LAYOUT_STABLE", View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         constants.put("SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION", View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         constants.put("SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN", View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        constants.put("SYSTEM_UI_FLAG_IMMERSIVE_STICKY", View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        constants.put("SYSTEM_UI_FLAG_LIGHT_STATUS_BAR", View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         constants.put("SYSTEM_UI_FLAG_LOW_PROFILE", View.SYSTEM_UI_FLAG_LOW_PROFILE);
         constants.put("SYSTEM_UI_FLAG_VISIBLE", View.SYSTEM_UI_FLAG_VISIBLE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            constants.put("SYSTEM_UI_FLAG_LIGHT_STATUS_BAR", View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        } else {
+            constants.put("SYSTEM_UI_FLAG_LIGHT_STATUS_BAR", 0);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            constants.put("SYSTEM_UI_FLAG_IMMERSIVE_STICKY", View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            constants.put("SYSTEM_UI_FLAG_IMMERSIVE", View.SYSTEM_UI_FLAG_IMMERSIVE);
+        } else {
+            constants.put("SYSTEM_UI_FLAG_IMMERSIVE_STICKY", 0);
+            constants.put("SYSTEM_UI_FLAG_IMMERSIVE", 0);
+        }
 
         return constants;
     }
@@ -81,4 +96,5 @@ public class SystemUiFlags extends ReactContextBaseJavaModule {
             }
         });
     }
+
 }

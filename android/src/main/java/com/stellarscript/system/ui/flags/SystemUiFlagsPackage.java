@@ -1,4 +1,4 @@
-package com.nh.system.ui.flags;
+package com.stellarscript.system.ui.flags;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;
@@ -10,10 +10,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class SystemUiFlagsModule implements ReactPackage {
+public class SystemUiFlagsPackage implements ReactPackage {
+
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactApplicationContext) {
-        return Arrays.<NativeModule>asList(new SystemUiFlags(reactApplicationContext));
+        return Arrays.<NativeModule>asList(new SystemUiFlagsModule(reactApplicationContext));
     }
 
     @Override
@@ -25,4 +26,5 @@ public class SystemUiFlagsModule implements ReactPackage {
     public List<ViewManager> createViewManagers(ReactApplicationContext reactApplicationContext) {
         return Collections.emptyList();
     }
+
 }
