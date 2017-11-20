@@ -8,16 +8,15 @@ import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.UiThreadUtil;
 import com.facebook.react.common.MapBuilder;
 
 import java.util.Map;
 
-public class SystemUiFlagsModule extends ReactContextBaseJavaModule {
+final class SystemUiFlagsModule extends ReactContextBaseJavaModule {
 
     private static final String TAG = "SystemUiFlags";
 
-    public SystemUiFlagsModule(ReactApplicationContext reactContext) {
+    SystemUiFlagsModule(final ReactApplicationContext reactContext) {
         super(reactContext);
     }
 
@@ -56,45 +55,30 @@ public class SystemUiFlagsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void getCurrentSystemUiFlags(final Callback cb) {
-        UiThreadUtil.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Activity currentActivity = getCurrentActivity();
-                if (currentActivity != null) {
-                    int currentSystemUiFlags = currentActivity.getWindow().getDecorView().getSystemUiVisibility();
-                    cb.invoke(currentSystemUiFlags);
-                }
-            }
-        });
+    public void getSystemUiFlags(final Callback callback) {
+        final Activity currentActivity = SystemUiFlagsModule.this.getCurrentActivity();
+        if (currentActivity != null) {
+            final int flags = currentActivity.getWindow().getDecorView().getSystemUiVisibility();
+            callback.invoke(flags);
+        }
     }
 
     @ReactMethod
-    public void setSystemUiFlags(final int systemUiFlags) {
-        UiThreadUtil.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Activity currentActivity = getCurrentActivity();
-                if (currentActivity != null) {
-                    currentActivity.getWindow().getDecorView().setSystemUiVisibility(systemUiFlags);
-                }
-            }
-        });
+    public void setSystemUiFlags(final int flags) {
+        final Activity currentActivity = SystemUiFlagsModule.this.getCurrentActivity();
+        if (currentActivity != null) {
+            currentActivity.getWindow().getDecorView().setSystemUiVisibility(flags);
+        }
     }
 
     @ReactMethod
-    public void updateSystemUiFlags(final int systemUiFlags) {
-        UiThreadUtil.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Activity currentActivity = getCurrentActivity();
-                if (currentActivity != null) {
-                    int currentSystemUiFlags = currentActivity.getWindow().getDecorView().getSystemUiVisibility();
-                    int newSystemUiFlags = currentSystemUiFlags | systemUiFlags;
-                    currentActivity.getWindow().getDecorView().setSystemUiVisibility(newSystemUiFlags);
-                }
-            }
-        });
+    public void updateSystemUiFlags(final int flags) {
+        final Activity currentActivity = SystemUiFlagsModule.this.getCurrentActivity();
+        if (currentActivity != null) {
+            final int currentFlags = currentActivity.getWindow().getDecorView().getSystemUiVisibility();
+            final int newFlags = currentFlags | flags;
+            currentActivity.getWindow().getDecorView().setSystemUiVisibility(newFlags);
+        }
     }
 
 }
