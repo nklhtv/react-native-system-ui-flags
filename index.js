@@ -1,3 +1,3 @@
-import { NativeModules } from 'react-native';
+import SystemUiFlags from './systemuiflags';
 
-export default NativeModules.SystemUiFlags;
+export default SystemUiFlags;
