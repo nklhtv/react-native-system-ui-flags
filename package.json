@@ -1,11 +1,11 @@
 {
-  "name": "react-native-system-ui-flags",
-  "version": "1.0.1",
-  "main": "index.js",
-  "author": "Nikola Hristov",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NikolaBorislavovHristov/react-native-system-ui-flags.git"
-  }
+    "name": "react-native-system-ui-flags",
+    "version": "2.0.0",
+    "main": "index.js",
+    "author": "Nikola Hristov",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NikolaBorislavovHristov/react-native-system-ui-flags.git"
+    }
 }
