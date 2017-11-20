@@ -10,10 +10,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class SystemUiFlagsPackage implements ReactPackage {
+public final class SystemUiFlagsPackage implements ReactPackage {
 
     @Override
-    public List<NativeModule> createNativeModules(ReactApplicationContext reactApplicationContext) {
+    public List<NativeModule> createNativeModules(final ReactApplicationContext reactApplicationContext) {
         return Arrays.<NativeModule>asList(new SystemUiFlagsModule(reactApplicationContext));
     }
 
@@ -23,7 +23,7 @@ public class SystemUiFlagsPackage implements ReactPackage {
     }
 
     @Override
-    public List<ViewManager> createViewManagers(ReactApplicationContext reactApplicationContext) {
+    public List<ViewManager> createViewManagers(final ReactApplicationContext reactApplicationContext) {
         return Collections.emptyList();
     }
 
