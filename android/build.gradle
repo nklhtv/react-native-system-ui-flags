@@ -1,14 +1,19 @@
-apply plugin: 'com.android.library'
+apply plugin: "com.android.library"
+
+def _compileSdkVersion = project.hasProperty("compileSdkVersion") ? project.compileSdkVersion.toInteger() : 24;
+def _buildToolsVersion = project.hasProperty("buildToolsVersion") ? project.buildToolsVersion : "26.0.2";
+def _minSdkVersion = project.hasProperty("minSdkVersion") ? project.minSdkVersion.toInteger() : 16;
+def _targetSdkVersion = project.hasProperty("targetSdkVersion") ? project.targetSdkVersion.toInteger() : 22;
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "25.0.2"
+    compileSdkVersion _compileSdkVersion
+    buildToolsVersion _buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 2
-        versionName "1.0.1"
+        minSdkVersion _minSdkVersion
+        targetSdkVersion _targetSdkVersion
+        versionCode 3
+        versionName "2.0.0"
     }
 }
 
