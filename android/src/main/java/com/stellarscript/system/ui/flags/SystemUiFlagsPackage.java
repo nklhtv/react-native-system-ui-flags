@@ -17,7 +17,6 @@ public final class SystemUiFlagsPackage implements ReactPackage {
         return Arrays.<NativeModule>asList(new SystemUiFlagsModule(reactApplicationContext));
     }
 
-    @Override
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Collections.emptyList();
     }
