@@ -58,42 +58,48 @@ final class SystemUiFlagsModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void getSystemUiFlags(final Callback callback) {
         UiThreadUtil.runOnUiThread(new Runnable() {
+
             @Override
             public void run() {
                 final Activity currentActivity = SystemUiFlagsModule.this.getCurrentActivity();
                 if (currentActivity != null) {
-                    final int flags = currentActivity.getWindow().getDecorView().getSystemUiVisibility();
+                    final int flags = SystemUiFlagsService.getSystemUiFlags(currentActivity);
                     callback.invoke(flags);
                 }
             }
+
         });
     }
 
     @ReactMethod
     public void setSystemUiFlags(final int flags) {
         UiThreadUtil.runOnUiThread(new Runnable() {
+
             @Override
             public void run() {
                 final Activity currentActivity = SystemUiFlagsModule.this.getCurrentActivity();
                 if (currentActivity != null) {
-                    currentActivity.getWindow().getDecorView().setSystemUiVisibility(flags);
+                    SystemUiFlagsService.setSystemUiFlags(currentActivity, flags);
                 }
             }
+
         });
     }
 
     @ReactMethod
     public void updateSystemUiFlags(final int flags) {
         UiThreadUtil.runOnUiThread(new Runnable() {
+
             @Override
             public void run() {
                 final Activity currentActivity = SystemUiFlagsModule.this.getCurrentActivity();
                 if (currentActivity != null) {
-                    final int currentFlags = currentActivity.getWindow().getDecorView().getSystemUiVisibility();
+                    final int currentFlags = SystemUiFlagsService.getSystemUiFlags(currentActivity);
                     final int newFlags = currentFlags | flags;
-                    currentActivity.getWindow().getDecorView().setSystemUiVisibility(newFlags);
+                    SystemUiFlagsService.setSystemUiFlags(currentActivity, newFlags);
                 }
             }
+
         });
     }
 
