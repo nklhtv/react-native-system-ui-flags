@@ -11,27 +11,14 @@ const CONSTANTS = {
     SYSTEM_UI_FLAG_IMMERSIVE: 0
 };
 
-const setSystemUiFlags = (flags) => {
-    if (typeof flags !== 'number' || isNaN(flags)) {
-        console.warn('setSystemUiFlags called with invalid parameters', flags);
-        return;
-    }
+const setSystemUiFlags = () => {
 };
 
-const updateSystemUiFlags = (flags) => {
-    if (typeof flags !== 'number' || isNaN(flags)) {
-        console.warn('updateSystemUiFlags called with invalid parameters', flags);
-        return;
-    }
+const updateSystemUiFlags = () => {
 };
 
-const getSystemUiFlags = (callback) => {
-    return new Promise((resolve) => {
-        resolve(0);
-        if (typeof callback === 'function') {
-            callback(0);
-        }
-    });
+const getSystemUiFlags = () => {
+    return Promise.resolve(0);
 };
 
 export default {

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Build;
 import android.view.View;
 
-import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -56,7 +56,7 @@ final class SystemUiFlagsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void getSystemUiFlags(final Callback callback) {
+    public void getSystemUiFlags(final Promise promise) {
         UiThreadUtil.runOnUiThread(new Runnable() {
 
             @Override
@@ -64,7 +64,7 @@ final class SystemUiFlagsModule extends ReactContextBaseJavaModule {
                 final Activity currentActivity = SystemUiFlagsModule.this.getCurrentActivity();
                 if (currentActivity != null) {
                     final int flags = SystemUiFlagsService.getSystemUiFlags(currentActivity);
-                    callback.invoke(flags);
+                    promise.resolve(flags);
                 }
             }
 

@@ -33,15 +33,8 @@ const updateSystemUiFlags = (flags) => {
     SystemUiFlags.updateSystemUiFlags(flags);
 };
 
-const getSystemUiFlags = (callback) => {
-    return new Promise((resolve) => {
-        SystemUiFlags.getSystemUiFlags((flags) => {
-            resolve(flags);
-            if (typeof callback === 'function') {
-                callback(flags);
-            }
-        });
-    });
+const getSystemUiFlags = () => {
+    return SystemUiFlags.getSystemUiFlags();
 };
 
 export default {
