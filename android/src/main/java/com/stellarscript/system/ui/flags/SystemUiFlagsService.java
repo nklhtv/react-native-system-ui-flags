@@ -1,7 +1,7 @@
 package com.stellarscript.system.ui.flags;
 
 import android.app.Activity;
-import android.support.v4.view.ViewCompat;
+import androidx.core.view.ViewCompat;
 
 public final class SystemUiFlagsService {
 
